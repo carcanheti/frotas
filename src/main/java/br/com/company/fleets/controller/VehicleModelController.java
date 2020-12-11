@@ -16,7 +16,6 @@ import io.swagger.annotations.*;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -46,8 +45,8 @@ public class VehicleModelController {
 			@ApiResponse(code = 404, message = "Not Found", response = ErrorResponse.class),
 			@ApiResponse(code = 500, message = "InternalServerError", response = ErrorResponse.class) })
 	@ApiOperation("Consultar veículo por id")
-	@GetMapping("{id}")
-	public ResponseEntity<VehicleModelDTO> findVehicleModelById(@PathVariable Long id) {
+	@GetMapping("/id")
+	public ResponseEntity<VehicleModelDTO> findVehicleModelById(@RequestParam Long id) {
 		VehicleModelDTO vehicleModelDTO = this.vehicleModelServicesImpl.findVehicleModelById(id);
 		return ResponseEntity.ok(vehicleModelDTO);
 	}
@@ -59,8 +58,8 @@ public class VehicleModelController {
 			@ApiResponse(code = 404, message = "Not Found", response = ErrorResponse.class),
 			@ApiResponse(code = 500, message = "InternalServerError", response = ErrorResponse.class) })
 	@ApiOperation("Consultar veículo por placa")
-	@GetMapping("{plate}")
-	public ResponseEntity<VehicleModelDTO> findVehicleModelByPlate(@PathVariable String plate) {
+	@GetMapping("/plate")
+	public ResponseEntity<VehicleModelDTO> findVehicleModelByPlate(@RequestParam String plate) {
 		VehicleModelDTO vehicleModelDTO = this.vehicleModelServicesImpl.findVehicleModelByPlate(plate);
 		return ResponseEntity.ok(vehicleModelDTO);
 	}
